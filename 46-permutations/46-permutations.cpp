@@ -1,25 +1,19 @@
 class Solution {
 public:
-    void generate(vector<vector<int>>& output, vector<int>& v, unordered_map<int,int>& m, vector<int>& nums){
-        if(v.size() == nums.size()){
-            output.push_back(v);
+    void generate(vector<vector<int>>& output,int index, vector<int>& nums){
+        if(nums.size() == index){
+            output.push_back(nums);
             return;
         }
-        for(int i = 0; i < nums.size(); i++){
-            if(!m[i]){
-                m[i] = 1;
-                v.push_back(nums[i]);
-                generate(output,v,m,nums);
-                v.pop_back();
-                m[i] = 0 ;
-            }
+        for(int i = index ; i < nums.size(); i++){
+            swap(nums[i],nums[index]);
+            generate(output,index+1,nums);
+            swap(nums[i],nums[index]);
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> output;
-        vector<int> v;
-        unordered_map<int,int> m;
-        generate(output,v,m,nums);
+        generate(output,0,nums);
         return output;
     }
 };
