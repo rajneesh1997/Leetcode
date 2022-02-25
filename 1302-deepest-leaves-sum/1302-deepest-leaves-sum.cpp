@@ -11,22 +11,24 @@
  */
 class Solution {
 public:
-    int ans = 0;
-    void dfs(TreeNode* root, int level, int depth){
+    int maxDepth = 1;
+    int sum = 0;
+    void dfs(TreeNode* root, int height){
         if(!root) return;
-        if(level ==  depth){
-            ans += root->val;
+        if(height > maxDepth){
+            maxDepth = height;
+            sum = root->val;
         }
-        dfs(root->left,level+1,depth);
-        dfs(root->right,level+1,depth);
-    }
-    int height(TreeNode* root){
-        if(!root) return 0;
-        return 1 + max(height(root->left),height(root->right));
+        else{
+            if(height == maxDepth){
+                sum += root->val;
+            }
+        }
+        dfs(root->right,height+1);
+        dfs(root->left,height+1);
     }
     int deepestLeavesSum(TreeNode* root) {
-        int depth = height(root);
-        dfs(root,1,depth);
-        return ans;
+        dfs(root,1);
+        return sum;
     }
 };
