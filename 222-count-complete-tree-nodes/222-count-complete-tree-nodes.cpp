@@ -11,27 +11,16 @@
  */
 class Solution {
 public:
-    int height(TreeNode* root){
-        if(!root) return 0;
-        return 1 + max(height(root->left),height(root->right));
-    }
     int countNodes(TreeNode* root) {
         if(!root) return 0;
-        int level = height(root);
-        if(level == 1){
-            return root->val;
-        }
         queue<TreeNode*> q;
         q.push(root);
         q.push(NULL);
-        int nodes = 0, treeHeight = 0;
-        while(!q.empty()){
+        int nodes = 0;
+        while(q.size() > 1){
             TreeNode* node = q.front();
             q.pop();
             if(!node){
-                treeHeight++;
-                if(treeHeight == level)
-                    break;
                 q.push(NULL);
             }
             else{
