@@ -1,15 +1,14 @@
 class Solution {
 public:
     vector<int> findLonely(vector<int>& nums) {
-        unordered_map<int,int> map;
-        for(auto x:nums)
-            map[x]++;
+        vector<int> v(1000003);
+        for(auto x:nums){
+            v[x+1]++;
+        }
         vector<int> ans;
         for(auto x:nums){
-            int crr = x;
-            if(map[crr]>1) continue;
-            if(map[crr-1] == 0 && map[crr+1] == 0)
-                ans.push_back(crr);
+            if(v[x] == 0 && v[x+1] == 1 && v[x+2] == 0)
+                ans.push_back(x);
         }
         return ans;
     }
