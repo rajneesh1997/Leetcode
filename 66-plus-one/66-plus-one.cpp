@@ -15,6 +15,9 @@ public:
                 carry = digits[i] / 10;
                 digits[i] %= 10;
             }
+            else{
+                break;
+            }
         }
         if(carry){
             digits.insert(digits.begin(),carry);
