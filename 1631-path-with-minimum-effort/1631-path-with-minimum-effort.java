@@ -13,7 +13,7 @@ class Solution {
             int d = top[0];
             int r = top[1];
             int c = top[2];
-            if(d > dist[r][c]) continue;
+            // if(d > dist[r][c]) continue;
             if(r == row-1 && c == col-1) return d;
             for(int[] dir : dirs){
                 int nr = r + dir[0];
