@@ -14,22 +14,23 @@
  * }
  */
 class Solution {
-    int ans = 0;
-    public int dfs(TreeNode root){
-        if(root == null)
+    int ans;
+    public int dfs(TreeNode root,int val){
+        if(root == null){
             return 0;
-        int left = dfs(root.left);
-        int right = dfs(root.right);
-        int arr_left = 0, arr_right = 0;
-        if(root.left != null && root.val == root.left.val)
-            arr_left += left + 1;
-        if(root.right != null && root.val == root.right.val)
-            arr_right += right + 1;
-        ans = Math.max(ans,arr_left + arr_right);
-        return Math.max(arr_left,arr_right);
+        }
+        int left = dfs(root.left,root.val);
+        int right = dfs(root.right,root.val);
+        ans = Math.max(ans,left+right);
+        if(root.val == val)
+            return Math.max(left,right)+1;
+        return 0;
     }
     public int longestUnivaluePath(TreeNode root) {
-        dfs(root);
+        if(root == null)
+            return 0;
+        ans = 0;
+        dfs(root,root.val);
         return ans;
     }
 }
