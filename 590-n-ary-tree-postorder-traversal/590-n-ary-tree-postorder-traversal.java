@@ -19,15 +19,20 @@ class Node {
 
 class Solution {
     List<Integer> ans = new ArrayList();
-    public void dfs(Node root){
-        if(root == null)
-            return;
-        for(Node child : root.children)
-            dfs(child);
-        ans.add(root.val);
+    public void iterative(Node root){
+        if(root == null) return;
+        Stack<Node> st = new Stack();
+        st.push(root);
+        while(!st.isEmpty()){
+            Node node = st.pop();
+            ans.add(node.val);
+            for(Node child : node.children)
+                st.push(child);
+        }
     }
     public List<Integer> postorder(Node root) {
-        dfs(root);
+        iterative(root);
+        Collections.reverse(ans);
         return ans;
     }
 }
