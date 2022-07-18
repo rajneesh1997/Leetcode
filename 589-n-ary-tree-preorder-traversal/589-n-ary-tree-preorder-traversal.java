@@ -18,20 +18,16 @@ class Node {
 */
 
 class Solution {
-    List<Integer> ans = new ArrayList();
-    public void bfs(Node root){
-        Stack<Node> que = new Stack();
-        que.push(root);
-        while(!que.isEmpty()){
-            Node child = que.pop();
-            ans.add(child.val);
-            for(int i = child.children.size()-1; i > -1; i--)
-                que.push(child.children.get(i));
+    ArrayList<Integer> ans = new ArrayList();
+    public void dfs(Node root){
+        if(root == null) return;
+        ans.add(root.val);
+        for(Node n : root.children){
+            dfs(n);
         }
     }
     public List<Integer> preorder(Node root) {
-        if(root == null) return ans;
-        bfs(root);
+        dfs(root);
         return ans;
     }
 }
