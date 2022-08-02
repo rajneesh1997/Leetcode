@@ -10,29 +10,29 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-        if(head == null || head.next == null){
+        if(head == null || head.next == null)
             return head;
-        }
-        ListNode mid = getMid(head);
+        ListNode mid = fetchMid(head);
         ListNode left = sortList(head);
         ListNode right = sortList(mid);
         return merge(left,right);
     }
     
-    public ListNode getMid(ListNode head){
-        ListNode midprev = null;
+    public ListNode fetchMid(ListNode head){
+        ListNode mid = null;
         while(head != null && head.next != null){
-            midprev = (midprev == null) ? head : midprev.next;
+            mid = (mid == null) ? head : mid.next;
             head = head.next.next;
         }
-        ListNode mid = midprev.next;
-        midprev.next = null;
-        return mid;
+        
+        ListNode newStart = mid.next;
+        mid.next = null;
+        return newStart;
     }
     
     public ListNode merge(ListNode left, ListNode right){
-        ListNode dummyHead = new ListNode();
-        ListNode tail = dummyHead;
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
         while(left != null && right != null){
             if(left.val < right.val){
                 tail.next = left;
@@ -44,7 +44,10 @@ class Solution {
                 tail = tail.next;
             }
         }
+        
         tail.next = (left == null) ? right : left;
-        return dummyHead.next;
+        return dummy.next;
     }
+    
+    
 }
