@@ -3,10 +3,12 @@ class Solution {
         int ans = 0;
         boolean flag = false;
         HashMap<String,Integer> map = new HashMap();
+        HashSet<String> set = new HashSet();
         for(String word : words){
+            set.add(word);
             map.put(word, map.getOrDefault(word,0)+1);
         }
-        for(String word : words){
+        for(String word : set){
             if(map.containsKey(word)){
                 // System.out.println(word + " " + map.get(word));
                 String rev_word = "" + word.charAt(1) + word.charAt(0);
