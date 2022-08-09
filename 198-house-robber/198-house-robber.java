@@ -5,7 +5,6 @@ class Solution {
         for(int i = 2; i < nums.length; i++){
             nums[i] = Math.max(nums[i] + nums[i-2], nums[i-1]);
         }
-        int n = nums.length - 1;
-        return Math.max(nums[n], nums[n-1]);
+        return nums[nums.length - 1];
     }
 }
