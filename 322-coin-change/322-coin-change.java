@@ -1,19 +1,23 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
-        ArrayList<Integer> arr = new ArrayList();
-        for(int i = 0; i <= amount; i++){
-            arr.add(Integer.MAX_VALUE-1);
-        }
-        arr.set(0,0);
-        for(int i = 1; i <= amount; i++){
-            for(int coin:coins){
-                if(i-coin >= 0){
-                    arr.set(i,Math.min(arr.get(i),arr.get(i-coin)+1));
+        int[] ans = new int[amount+1];
+        Arrays.sort(coins);
+        for(int i = 1; i < amount+1; i++){
+            int a = Integer.MAX_VALUE - 1;
+            for(int coin : coins){
+                if(i - coin >= 0){
+                    if(ans[i-coin] != -1)
+                        a = Math.min(a,ans[i-coin]+1);
                 }
             }
+            if(a == Integer.MAX_VALUE-1)
+                ans[i] = -1;
+            else
+                ans[i] = a;
         }
-        // for(int i = 0; i <= amount; i++)
-        //     System.out.println(i + " " + arr.get(i));
-        return arr.get(amount) == Integer.MAX_VALUE-1 ? -1 : arr.get(amount);
+        // for(int i : ans){
+        //     System.out.print(i + " ");
+        // }
+        return ans[amount];
     }
 }
