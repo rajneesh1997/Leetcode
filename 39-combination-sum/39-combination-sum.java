@@ -1,27 +1,23 @@
 class Solution {
     List<List<Integer>> ans = new ArrayList<>();
-    public void traverse(int ind, int target, int[] candidates, List<Integer> arr){
-        // for(int i = 0; i < arr.size(); i++){
-        //     System.out.print(arr.get(i) + " ");
-        // }
-        // System.out.println("-------->"+target);
-        // if(target < 0) return;
+    public void dfs(int[] candidates, int target, List<Integer> arr,int index){
         if(target == 0){
-            ans.add(new ArrayList<Integer>(arr));
+            ans.add(new ArrayList<>(arr));
+        }
+        if(target < 0){
             return;
         }
-        for(int i = ind; i < candidates.length; i++){
+        for(int i = index; i < candidates.length; i++){
             if(target >= candidates[i]){
                 arr.add(candidates[i]);
-                traverse(i,target-candidates[i],candidates,arr);
+                dfs(candidates,target-candidates[i],arr,i);
                 arr.remove(arr.size()-1);
             }
         }
-        return;
     }
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<Integer> arr = new ArrayList<>();
-        traverse(0, target, candidates, arr);
+        dfs(candidates,target,arr,0);
         return ans;
     }
 }
