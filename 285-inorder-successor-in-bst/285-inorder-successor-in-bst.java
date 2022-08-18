@@ -8,20 +8,16 @@
  * }
  */
 class Solution {
-    ArrayList<TreeNode> arr = new ArrayList();
-    public void dfs(TreeNode root){
-        if(root == null)
-            return;
-        dfs(root.left);
-        arr.add(root);
-        dfs(root.right);
-    }
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-        dfs(root);
-        int ind = arr.indexOf(p);
-        // System.out.println(ind);
-        if(ind == arr.size()-1)
-            return null;
-        return arr.get(ind+1);
+        TreeNode ans = null;
+        while(root != null){
+            if(p.val >= root.val)
+                root = root.right;
+            else {
+                ans = root;
+                root = root.left;
+            }
+        }
+        return ans;
     }
 }
