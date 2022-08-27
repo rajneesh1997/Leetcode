@@ -1,11 +1,10 @@
 class Solution {
     public int f(int i, int budget, int[] present, int[] future,int[][] dp){
-        if(i < 0) return 0;
-        // if(i == 0){
-        //     if(present[i] <= budget)
-        //         return future[i] - present[i];
-        //     return 0;
-        // }
+        if(i == 0){
+            if(present[i] <= budget)
+                return Math.max(0,future[i] - present[i]);
+            return 0;
+        }
         if(dp[i][budget] != -1) return dp[i][budget];
         int notPick = f(i-1,budget,present,future,dp);
         int pick = 0;
