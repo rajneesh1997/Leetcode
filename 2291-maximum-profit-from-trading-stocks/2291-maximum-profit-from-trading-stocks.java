@@ -15,7 +15,7 @@ class Solution {
     public int maximumProfit(int[] present, int[] future, int budget) {
         int n = present.length;
         
-        int[][] dp = new int[n][budget+1];
+        int[][] dp = new int[n+1][budget+1];
         for(int[] row : dp)
             Arrays.fill(row,-1);
         return f(n-1,budget,present,future,dp);
