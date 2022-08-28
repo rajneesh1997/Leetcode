@@ -30,7 +30,7 @@ class Solution {
             for(int j = i+1; j < n; j++){
                 int ans = Integer.MAX_VALUE;
                 for(int k = i; k < j; k++){
-                    int steps = values[i-1] * values[k] * values[j] + f(i,k,values,dp) + f(k+1,j,values,dp);
+                    int steps = values[i-1] * values[k] * values[j] + dp[i][k] + dp[k+1][j];
                     ans = Math.min(ans, steps);
                 }
                 dp[i][j] = ans;
