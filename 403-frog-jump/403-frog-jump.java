@@ -20,8 +20,7 @@ class Solution {
     }
     public boolean canCross(int[] stones) {
         int n = stones.length;
-        int k = stones[n-1] + 1;
-        int[][] dp = new int[n][2001];
+        int[][] dp = new int[n][n];
         for(int[] row : dp){
             Arrays.fill(row,-1);
         }
