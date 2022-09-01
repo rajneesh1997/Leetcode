@@ -1,7 +1,7 @@
 class Solution {
     int[] dir = {0,1,0,-1,0};
     public int f(int i, int j, int[][] matrix, int[][] dp){
-        if(dp[i][j] != -1) return dp[i][j];
+        if(dp[i][j] != 0) return dp[i][j];
         dp[i][j] = 1;
         int ans = 0;
         int val = matrix[i][j];  
@@ -23,8 +23,6 @@ class Solution {
         int m = matrix[0].length;
         
         int[][] dp = new int[n][m];
-        for(int[] row : dp)
-            Arrays.fill(row,-1);
         
         int ans = 0;
         
