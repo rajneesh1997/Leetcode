@@ -21,7 +21,7 @@ class Solution {
         return dp[i] = ans;
     }
     public int minCut(String s) {
-        int[] dp = new int[s.length()];
+        int[] dp = new int[s.length()+1];
         // Arrays.fill(dp,-1);
         // return f(0,s,dp) - 1;
         int n = s.length();
@@ -30,7 +30,7 @@ class Solution {
             int ans = Integer.MAX_VALUE;
             for(int k = i; k < s.length(); k++){
                 if(check(i,k,s)){
-                    ans = Math.min(ans, 1 + f(k+1,s,dp));
+                    ans = Math.min(ans, 1 + dp[k+1]);
                 }
                 dp[i] = ans;
             }
