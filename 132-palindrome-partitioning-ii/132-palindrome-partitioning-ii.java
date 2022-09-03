@@ -22,7 +22,19 @@ class Solution {
     }
     public int minCut(String s) {
         int[] dp = new int[s.length()];
-        Arrays.fill(dp,-1);
-        return f(0,s,dp) - 1;
+        // Arrays.fill(dp,-1);
+        // return f(0,s,dp) - 1;
+        int n = s.length();
+        
+        for(int i = n-1; i > -1; i--){
+            int ans = Integer.MAX_VALUE;
+            for(int k = i; k < s.length(); k++){
+                if(check(i,k,s)){
+                    ans = Math.min(ans, 1 + f(k+1,s,dp));
+                }
+                dp[i] = ans;
+            }
+        }
+        return dp[0] - 1;
     }
 }
