@@ -14,13 +14,9 @@ class Solution {
             if(ch == ')'){
                 if(open == 0){
                     map.put(open,i);
-                    continue;
                 } else {
                     open--;
-                    if(map.get(open) == null)
-                        j = -1;
-                    else
-                        j = map.get(open);
+                    j = map.get(open) != null ? map.get(open) : -1;
                     ans = Math.max(ans, i-j);
                 }       
             } 
