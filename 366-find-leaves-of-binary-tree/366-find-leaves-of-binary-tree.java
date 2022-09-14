@@ -15,27 +15,24 @@
  */
 class Solution {
     List<List<Integer>> ans = new ArrayList<>();
-    public TreeNode dfs(TreeNode root, List<Integer> tmp){
-        if(root.left == null && root.right == null){
-            tmp.add(root.val);
-            // root = new TreeNode();
-            return null;
+    public int postOrder(TreeNode root){
+        if(root == null)
+            return -1;
+        
+        int left = postOrder(root.left);
+        int right = postOrder(root.right);
+        
+        int curr = 1 + Math.max(left,right);
+        
+        if(curr == ans.size()){
+            ans.add(new ArrayList<>());
         }
-        if(root.left != null)
-            root.left = dfs(root.left,tmp);
-        if(root.right != null)
-            root.right = dfs(root.right,tmp);
-        return root;
+        
+        ans.get(curr).add(root.val);
+        return curr;
     }
     public List<List<Integer>> findLeaves(TreeNode root) {
-        TreeNode dummy = new TreeNode();
-        dummy.right = root;
-        while(dummy.right != null){
-            List<Integer> tmp = new ArrayList<>();
-            dfs(dummy,tmp);
-            ans.add(tmp);
-        }
-        // ans.add(new ArrayList<>(root.val));
+        postOrder(root);
         return ans;
     }
 }
