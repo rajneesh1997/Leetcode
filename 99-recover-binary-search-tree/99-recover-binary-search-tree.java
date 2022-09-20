@@ -26,9 +26,9 @@ class Solution {
         dfs(root);
         int n = arr.size();
         int a = 0, b = n-1;
-        for(int i = 1; i < n; i++){
-            if(arr.get(i).val < arr.get(i-1).val){
-                a = i-1;
+        for(int i = 0; i < n; i++){
+            if(arr.get(i).val > arr.get(i+1).val){
+                a = i;
                 break;
             }
         }
