@@ -7,6 +7,6 @@ class Solution {
         double hrHand = ((double)minutes/60) * 30 + (hour * 30);
         double minHand = ((double)minutes/60) * 360;
         ans = Math.abs(minHand - hrHand);
-        return Math.abs(Math.min(ans, 360-ans));
+        return Math.min(ans, 360-ans);
     }
 }
