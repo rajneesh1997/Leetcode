@@ -1,6 +1,6 @@
 class Solution {
     public int f(int i, int stat, int n, int[] prices, int[][] dp){
-        if(stat == 2) return 0;
+        // if(stat == 2) return 0;
         if(i >= n) return 0;
         int profit = 0;
         if(dp[i][stat] != -1) return dp[i][stat];
